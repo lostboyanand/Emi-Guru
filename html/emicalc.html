@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emi Calculator</title>
+</head>
+<body>
+    <h2>Emi Guru Calculator</h2>
+    <form id="emiForm">
+        <div class="form-groupingkrna">
+        <label for="loanAmount">Loan Amount: </label>
+        <input type="number" id="loanAmount" name="loanAmount" required>
+        </div>
+
+        <div class="form-groupingkrna">
+            <label for="interestRate">Interest Rate (%) :</label>
+            <input type="number" id="interestRate" name="interestRate" required>
+        </div>
+
+        <div class="form-groupingkrna">
+            <label for="loanTenure">Loan Tenure(months) :</label>
+            <input type="number" id="loanTenure" name="loanTenure" required>
+        </div>
+        <button type="submit">Calculate Emi</button>
+    </form>
+    <script src="../js/emicalc.js"></script>
+</body>
+</html>
