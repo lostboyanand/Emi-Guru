@@ -1,104 +1,56 @@
-const loanAmountInput = document.querySelector(".loan-amount");
-const interestRateInput = document.querySelector(".interest-rate");
-const loanTenureInput = document.querySelector(".loan-tenure");
+const loanAmount = document.getElementById("loan_amount");
+const loanTenure = document.getElementById("loan_tenure");
+const loanRate = document.getElementById("loan_interest");
 
-const loanEMIValue = document.querySelector(".loan-emi .value");
-const totalInterestValue = document.querySelector(".total-interest .value");
-const totalAmountValue = document.querySelector(".total-amount .value");
+const loanEmi = document.querySelector(".loan_emi");
+const loanPrinciple = document.querySelector(".loan_principle");
+const loanTotal = document.querySelector(".loan_total");
+const loanInterest = document.querySelector(".loan_interest_rate");
 
-const calculateBtn = document.querySelector(".calculate-btn");
 
-let loanAmount = parseFloat(loanAmountInput.value);
-let interestRate = parseFloat(interestRateInput.value);
-let loanTenure = parseFloat(loanTenureInput.value);
 
-let interest = interestRate / 12 / 100;
+const submitBtn = document.querySelector(".calculator-btn");
 
-let myChart;
+submitBtn.addEventListener("click", function(){
 
-const checkValues = () => {
-  let loanAmountValue = loanAmountInput.value;
-  let interestRateValue = interestRateInput.value;
-  let loanTenureValue = loanTenureInput.value;
+    amount = loanAmount.value;
+    tenure = (loanTenure.value)*12; // 1Year = 12 months
+    rate = (loanRate.value)/12/100; // loan rate per year / 100 = loan percentage
 
-  let regexNumber = /^[0-9]+$/;
-  if (!loanAmountValue.match(regexNumber)) {
-    loanAmountInput.value = "10000";
-  }
+    emi = ((amount * rate * (1+rate)**tenure)/(((1+rate)**tenure)-1));
+    //console.log(emi);
+    total = emi * tenure; // total amount to be paid including interest
+    interest = total - amount // interest = total amount - principle amount
+   // console.log(total);
+    //console.log(interest);
 
-  if (!loanTenureValue.match(regexNumber)) {
-    loanTenureInput.value = "12";
-  }
+    loanEmi.innerHTML = Math.floor(emi);
+    loanPrinciple.innerHTML = Math.floor(amount);
+    loanTotal.innerHTML = Math.floor(total);
+    loanInterest.innerHTML = Math.floor(interest);
 
-  let regexDecimalNumber = /^(\d*\.)?\d+$/;
-  if (!interestRateValue.match(regexDecimalNumber)) {
-    interestRateInput.value = "7.5";
-  }
-};
 
-const displayChart = (totalInterestPayableValue) => {
-  const ctx = document.getElementById("myChart").getContext("2d");
-  myChart = new Chart(ctx, {
-    type: "pie",
-    data: {
-      labels: ["Total Interest", "Principal Loan Amount"],
-      datasets: [
-        {
-          data: [totalInterestPayableValue, loanAmount],
-          backgroundColor: ["#e63946", "#14213d"],
-          borderWidth: 0,
+    //Loanchart
+    let xValues = ["Principle", "Interest"];
+    let yValues = [amount, Math.floor(interest)];
+
+    let barColors = ["#961251", "#000000"];
+
+    new Chart("loanChart", {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets:[{
+                backgroundColor: barColors,
+                data: yValues
+            }]
         },
-      ],
-    },
-  });
-};
+        options: {
+            title: {
+                display:false,
+            }
+        }
+    });
 
-const updateChart = (totalInterestPayableValue) => {
-  myChart.data.datasets[0].data[0] = totalInterestPayableValue;
-  myChart.data.datasets[0].data[1] = loanAmount;
-  myChart.update();
-};
 
-const refreshInputValues = () => {
-  loanAmount = parseFloat(loanAmountInput.value);
-  interestRate = parseFloat(interestRateInput.value);
-  loanTenure = parseFloat(loanTenureInput.value);
-  interest = interestRate / 12 / 100;
-};
-
-const calculateEMI = () => {
-  checkValues();
-  refreshInputValues();
-  let emi =
-    loanAmount *
-    interest *
-    (Math.pow(1 + interest, loanTenure) /
-      (Math.pow(1 + interest, loanTenure) - 1));
-
-  return emi;
-};
-
-const updateData = (emi) => {
-  loanEMIValue.innerHTML = Math.round(emi);
-
-  let totalAmount = Math.round(loanTenure * emi);
-  totalAmountValue.innerHTML = totalAmount;
-
-  let totalInterestPayable = Math.round(totalAmount - loanAmount);
-  totalInterestValue.innerHTML = totalInterestPayable;
-
-  if (myChart) {
-    updateChart(totalInterestPayable);
-  } else {
-    displayChart(totalInterestPayable);
-  }
-};
-
-const init = () => {
-  let emi = calculateEMI();
-  updateData(emi);
-};
-
-init();
-
-calculateBtn.addEventListener("click", init);
+});
