@@ -52,5 +52,4 @@ submitBtn.addEventListener("click", function(){
         }
     });
 
-
 });
