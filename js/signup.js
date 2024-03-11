@@ -25,6 +25,12 @@ document.getElementById("signupForm").addEventListener("submit",function(event){
 
     const jsonArray = JSON.parse(localStorage.getItem('jsonArray')) || [];
 
+    // check for duplicate names
+    const existingUser = jsonArray.find(user => user.username === username);
+  if (existingUser) {
+    alert("Username already exists. Please choose a different one.");
+    return;
+  }
     // create a new object with the retrieved values
 
     const newUser = {name: name , username: username , password: password};
