@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loan EMI Calculator with Javascript - Codingscape</title>
-
-    <!--Stylesheet-->
+    <title>Loan EMI Calculator with JavaScript</title>
     <link rel="stylesheet" href="../css/emicalc.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
@@ -31,9 +29,7 @@
                 <button class="calculator-btn">Calculate EMI</button>
             </div>
         </div>
-
         <div class="calculator-result">
-            <!---Canvas-->
             <canvas id="loanChart"></canvas>
             <ul>
                 <li>Monthly Loan EMI: <span class="loan_emi"></span></li>
@@ -41,24 +37,17 @@
                 <li>Loan on Interest: <span class="loan_interest_rate"></span></li>
                 <li>Total Amount to be paid: <span class="loan_total"></span></li>
             </ul>
-
-            <!-- Logout Button -->
-    <button id="logoutBtn" class="logout-btn">Logout</button>
+            <button id="logoutBtn" class="logout-btn">Logout</button>
         </div>
     </div>
-    <!--Javascript-->
     <script src="../js/emicalc.js"></script>
-    <!-- <script>
+    <script>
+        const logoutBtn = document.getElementById("logoutBtn");
 
-const logoutBtn = document.getElementById("logoutBtn");
-
-logoutBtn.addEventListener("click", function() {
-    // Clear local storage
-    //localStorage.clear();
-    
-    // Redirect to the signup page
-    window.location.href = "index.html"; 
-});
-    </script> -->
+        logoutBtn.addEventListener("click", function() {
+            // Redirect to the login page
+            window.location.href = "login.html"; // Replace "login.html" with your actual login page file name
+        });
+    </script>
 </body>
 </html>

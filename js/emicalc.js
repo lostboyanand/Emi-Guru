@@ -34,7 +34,7 @@ submitBtn.addEventListener("click", function(){
     let xValues = ["Principle", "Interest"];
     let yValues = [amount, Math.floor(interest)];
 
-    let barColors = ["#961251", "#000000"];
+    let barColors = ["#ffa600", "#000000"];
 
     new Chart("loanChart", {
         type: "pie",
@@ -51,5 +51,7 @@ submitBtn.addEventListener("click", function(){
             }
         }
     });
+
+    
 
 });
