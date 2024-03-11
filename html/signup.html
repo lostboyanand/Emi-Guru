@@ -4,25 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emi Guru Sign Up</title>
+    <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/signup.css">
 </head>
 <body>
 
-    <h2>Let's Sign Up</h2>
+<div class="container">
+  <div class="left-section">
+    <div class="header">
+      <h1 class="animation a1">Let's Sign Up</h1>
+      <h4 class="animation a2">Fill in the details below to create an account</h4>
+    </div>
     <form id="signupForm">
+    <div class="form">
         <div class="form-groupingkrna">
             <label for="name">Name:</label>
-            <input type="text" id="name"  name="name" required>
+            <input type="text" id="name" class="form-field animation a3" placeholder="Name">
         </div>
         <div class="form-groupingkrna">
             <label for="username">UserName:</label>
-            <input type="text" id="username"  name="username" required>
+            <input type="text" id="username" class="form-field animation a4" placeholder="Username">
         </div>
         <div class="form-groupingkrna">
             <label for="password">Password:</label>
-            <input type="password" id="password"  name="name" required>
+            <input type="password" id="password" class="form-field animation a5" placeholder="Password">
         </div>
-        <button type="submit">Sign Up</button>
-    </form>
-    <script src="../js/signup.js"></script>
+        <button type="submit" class="animation a6">Sign Up</button>
+    </div>
+</form>
+  </div>
+  <div class="right-section"></div>
+</div>
+
+<script src="../js/signup.js"></script>
 </body>
 </html>
